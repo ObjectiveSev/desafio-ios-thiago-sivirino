@@ -1,0 +1,14 @@
+//
+//  Development.xcconfig
+//  desafio-ios-thiago-sivirino
+//
+//  Created by Thiago Augusto on 23/07/20.
+//  Copyright © 2020 objectivesev. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+API_URL = https:/$()/gateway.marvel.com
+PUBLIC_API_KEY = bc810066f48776a65234c745575b542b
+PRIVATE_API_KEY = 4a5812ca0ad2d190e8c1952b61c95b91f07fe811

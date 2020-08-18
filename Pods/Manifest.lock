@@ -1,0 +1,42 @@
+PODS:
+  - Cosmos (22.1.0)
+  - ObjectMapper (4.2.0)
+  - PromiseKit (6.13.1):
+    - PromiseKit/CorePromise (= 6.13.1)
+    - PromiseKit/Foundation (= 6.13.1)
+    - PromiseKit/UIKit (= 6.13.1)
+  - PromiseKit/CorePromise (6.13.1)
+  - PromiseKit/Foundation (6.13.1):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (6.13.1):
+    - PromiseKit/CorePromise
+  - SDWebImage (5.8.4):
+    - SDWebImage/Core (= 5.8.4)
+  - SDWebImage/Core (5.8.4)
+  - SnapKit (5.0.1)
+
+DEPENDENCIES:
+  - Cosmos
+  - ObjectMapper
+  - PromiseKit
+  - SDWebImage
+  - SnapKit
+
+SPEC REPOS:
+  trunk:
+    - Cosmos
+    - ObjectMapper
+    - PromiseKit
+    - SDWebImage
+    - SnapKit
+
+SPEC CHECKSUMS:
+  Cosmos: 2795b36ad4bbea1af3050d6d65576ed63875f86a
+  ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
+  PromiseKit: 28fda91c973cc377875d8c0ea4f973013c05b6db
+  SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+
+PODFILE CHECKSUM: 6686fed5a4cd45770f91570ef32ced9824508a7a
+
+COCOAPODS: 1.8.4
