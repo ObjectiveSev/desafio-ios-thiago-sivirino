@@ -10,9 +10,11 @@ import Foundation
 import PromiseKit
 
 protocol ICharactersService {
-    typealias CharactersHandler = (NetworkResult<CharactersResponse, NetworkError, Int>) -> Void
+    typealias CharactersHandler = (NetworkResult<APIResponse<Character>, NetworkError, Int>) -> Void
+    typealias ComicsHandler = (NetworkResult<APIResponse<Comic>, NetworkError, Int>) -> Void
     
     func getCharacters(offset: Int, handler: @escaping CharactersHandler)
+    func getComics(id: Int, handler: @escaping ComicsHandler)
 }
 
 class CharactersService: NetworkBaseService, ICharactersService {
@@ -20,6 +22,13 @@ class CharactersService: NetworkBaseService, ICharactersService {
         let path = ""
         let parameters: [String: Any] = ["limit" : 20,
                                          "offset" : offset]
+        let service = NetworkService(api: .marvelCharacter, path: path, parameters: parameters)
+        NetworkDispatch.shared.get(service, handler: handler)
+    }
+    
+    func getComics(id: Int, handler: @escaping ComicsHandler) {
+        let path = "\(id)/comics/"
+        let parameters: [String: Any] = [:]
         let service = NetworkService(api: .marvelCharacter, path: path, parameters: parameters)
         NetworkDispatch.shared.get(service, handler: handler)
     }

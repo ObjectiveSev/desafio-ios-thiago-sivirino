@@ -1,5 +1,5 @@
 //
-//  CharacterDetailsViewController.swift
+//  ExpensiveComicViewController.swift
 //  desafio-ios-thiago-sivirino
 //
 //  Created by Thiago Augusto on 18/08/20.
@@ -8,10 +8,10 @@
 
 import UIKit
 
-class CharacterDetailsViewController: BaseViewController {
-    let viewModel: CharacterDetailsViewModel
+class ExpensiveComicViewController: BaseViewController {
+    let viewModel: ExpensiveComicViewModel
     
-    private lazy var characterImage: UIImageView = {
+    private lazy var comicImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
         image.layer.cornerRadius = 5
@@ -44,24 +44,11 @@ class CharacterDetailsViewController: BaseViewController {
         return scroll
     }()
     
-    private lazy var comicsButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "Expensive Comic", style: .done, target: self, action: #selector(comicsTapped))
-        button.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13)], for: .normal)
-        return button
-    }()
-    
-    private lazy var closeButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "Close", style: .done, target: self, action: #selector(closeTapped))
-        button.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13)], for: .normal)
-        return button
-    }()
-    
-    init(viewModel: CharacterDetailsViewModel) {
+    init(viewModel: ExpensiveComicViewModel) {
         self.viewModel = viewModel
         super.init()
+        viewModel.delegate = self
         configureLayout()
-        configureView()
-        configureNavBar()
     }
     
     required init?(coder: NSCoder) {
@@ -69,16 +56,10 @@ class CharacterDetailsViewController: BaseViewController {
     }
 }
 
-private extension CharacterDetailsViewController {
-    @objc func comicsTapped() {
-        viewModel.coordinatorDelegate?.seeComic(viewModel.character)
-    }
-    
-    @objc func closeTapped() {
-        viewModel.coordinatorDelegate?.closeDetails()
-    }
-    
+private extension ExpensiveComicViewController {
     func configureLayout() {
+        navigationItem.title = "Expensive comic"
+        
         scrollView.createConstraints(view) { maker in
             maker.edges.equalToSuperview()
         }
@@ -88,7 +69,7 @@ private extension CharacterDetailsViewController {
             maker.leading.trailing.equalToSuperview().inset(5)
         }
         
-        characterImage.createConstraints(scrollView) { maker in
+        comicImage.createConstraints(scrollView) { maker in
             maker.leading.trailing.equalTo(titleLabel)
             maker.top.equalTo(titleLabel.snp.bottom).offset(10)
             maker.width.equalToSuperview().offset(-10)
@@ -96,20 +77,27 @@ private extension CharacterDetailsViewController {
         
         descriptionLabel.createConstraints(scrollView) { maker in
             maker.leading.trailing.equalTo(titleLabel)
-            maker.top.equalTo(characterImage.snp.bottom).offset(10)
+            maker.top.equalTo(comicImage.snp.bottom).offset(10)
             maker.bottom.equalToSuperview().inset(10)
         }
     }
     
-    func configureNavBar() {
-        navigationItem.title = "Details"
-        navigationItem.leftBarButtonItem = comicsButton
-        navigationItem.rightBarButtonItem = closeButton
+    func updateBindings() {
+        let price = viewModel.maxPrice(viewModel.comic?.prices)
+        let title = viewModel.comic?.title ?? ""
+        titleLabel.text = "$\(price) \(title)"
+        descriptionLabel.text = viewModel.comic?.description
+        comicImage.loadWith(viewModel.comic?.thumbnail?.fullPath())
     }
-    
-    func configureView() {
-        titleLabel.text = viewModel.character.name
-        descriptionLabel.text = viewModel.character.description
-        characterImage.loadWith(viewModel.character.thumbnail?.fullPath())
+}
+
+extension ExpensiveComicViewController: ExpensiveComicViewModelDelegate {
+    func didSelectAction(_ action: ExpensiveComicViewModelAction) {
+        switch action {
+        case .failure(let error, _):
+            showError(error: error)
+        case .updateBindings:
+            updateBindings()
+        }
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 
 protocol CharacterDetailsViewModelCoordinatorDelegate: class {
     func closeDetails()
-    func seeComic()
+    func seeComic(_ character: Character)
 }
 
 class CharacterDetailsViewModel {

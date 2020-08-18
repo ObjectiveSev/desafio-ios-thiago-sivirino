@@ -9,31 +9,11 @@
 import Foundation
 import ObjectMapper
 
-class CharactersResponse: Mappable {
-    var data: CharacterResult?
-    
-    required init?(map: Map) {}
-    
-    func mapping(map: Map) {
-        self.data <- map["data"]
-    }
-}
-
-class CharacterResult: Mappable {
-    var results: [Character]?
-    
-    required init?(map: Map) {}
-    
-    func mapping(map: Map) {
-        self.results <- map["results"]
-    }
-}
-
 class Character: Mappable {
     var id: Int?
     var name: String?
     var description: String?
-    var thumbnail: CharacterThumbnail?
+    var thumbnail: Thumbnail?
     
     required init?(map: Map) {}
     
@@ -44,20 +24,3 @@ class Character: Mappable {
         self.description <- map["description"]
     }
 }
-
-class CharacterThumbnail: Mappable {
-    var path: String?
-    var ext: String?
-    
-    required init?(map: Map) {}
-    
-    func mapping(map: Map) {
-        self.path <- map["path"]
-        self.ext <- map["extension"]
-    }
-    
-    func fullPath() -> String? {
-        "\(path ?? "").\(ext ?? "")"
-    }
-}
-

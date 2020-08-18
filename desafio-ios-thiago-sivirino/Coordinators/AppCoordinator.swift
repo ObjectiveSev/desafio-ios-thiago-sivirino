@@ -35,7 +35,7 @@ public class AppCoordinator: RootViewCoordinator {
         self.window.rootViewController = rootViewController
         self.window.makeKeyAndVisible()
     }
-        
+    
     /// Starts the coordinator
     public func start() {
         let service = CharactersService()
@@ -62,7 +62,21 @@ extension AppCoordinator: CharacterDetailsViewModelCoordinatorDelegate {
         navigationController.dismiss(animated: true)
     }
     
-    func seeComic() {
-        
+    func seeComic(_ character: Character) {
+        if let nav = navigationController.presentedViewController as? UINavigationController {
+            let service = CharactersService()
+            let viewModel = ExpensiveComicViewModel(character: character, characterService: service)
+            viewModel.coordinatorDelegate = self
+            let controller = ExpensiveComicViewController(viewModel: viewModel)
+            nav.pushViewController(controller, animated: true)
+        }
+    }
+}
+
+extension AppCoordinator: ExpensiveComicViewModelCoordinatorDelegate {
+    func closeComic() {
+        if let nav = navigationController.presentedViewController as? UINavigationController {
+            nav.popViewController(animated: true)
+        }
     }
 }

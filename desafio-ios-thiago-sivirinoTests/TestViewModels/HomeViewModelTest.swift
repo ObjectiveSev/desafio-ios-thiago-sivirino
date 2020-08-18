@@ -15,10 +15,10 @@ class HomeViewModelTest: XCTestCase {
         var isSuccess = true
         var errorCode = 0
         
-        func getCharacters(offset: Int, handler: @escaping CharactersHandler) {
-            let data = CharacterResult(JSON: [:])!
+        func getCharacters(offset: Int, handler: @escaping APIResponseHanlder) {
+            let data = APIResult(JSON: [:])!
             data.results = characters
-            let result = CharactersResponse(JSON: [:])!
+            let result = APIResponse(JSON: [:])!
             result.data = data
             let error = NetworkError.withError(error: NSError.from(code: errorCode, data: Data(), description: ""))
             handler(isSuccess ? .success(result, 200) : .failure(error, errorCode))
