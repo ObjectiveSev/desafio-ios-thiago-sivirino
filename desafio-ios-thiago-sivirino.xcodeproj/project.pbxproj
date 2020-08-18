@@ -36,6 +36,8 @@
 		AF6CAC8D24EB3B6D009B795C /* Desafio iOS.txt in Resources */ = {isa = PBXBuildFile; fileRef = AF6CAC8C24EB3B6C009B795C /* Desafio iOS.txt */; };
 		AF6CAC8F24EB6D9B009B795C /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6CAC8E24EB6D9B009B795C /* UICollectionView.swift */; };
 		AF6CAC9124EB6DAF009B795C /* UICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6CAC9024EB6DAF009B795C /* UICollectionViewCell.swift */; };
+		AF6CAC9424EB7F8A009B795C /* CharacterDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6CAC9324EB7F8A009B795C /* CharacterDetailsViewModel.swift */; };
+		AF6CAC9624EB800A009B795C /* CharacterDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6CAC9524EB800A009B795C /* CharacterDetailsViewController.swift */; };
 		AF79308B24EB2A5F0006ECB3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF79308A24EB2A5F0006ECB3 /* Constants.swift */; };
 		AF79308D24EB2D500006ECB3 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF79308C24EB2D500006ECB3 /* String.swift */; };
 		AF8A22C824D36924000DC40B /* HomeViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8A22C724D36924000DC40B /* HomeViewModelTest.swift */; };
@@ -99,6 +101,8 @@
 		AF6CAC8C24EB3B6C009B795C /* Desafio iOS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Desafio iOS.txt"; sourceTree = "<group>"; };
 		AF6CAC8E24EB6D9B009B795C /* UICollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
 		AF6CAC9024EB6DAF009B795C /* UICollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICollectionViewCell.swift; sourceTree = "<group>"; };
+		AF6CAC9324EB7F8A009B795C /* CharacterDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewModel.swift; sourceTree = "<group>"; };
+		AF6CAC9524EB800A009B795C /* CharacterDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewController.swift; sourceTree = "<group>"; };
 		AF79308A24EB2A5F0006ECB3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AF79308C24EB2D500006ECB3 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		AF8A22C724D36924000DC40B /* HomeViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTest.swift; sourceTree = "<group>"; };
@@ -267,6 +271,7 @@
 		AF4AA68324CA41B20027BE87 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				AF6CAC9224EB7F7B009B795C /* Character Details */,
 				AF4AA68E24CA43190027BE87 /* Base */,
 				AF4AA68D24CA42FB0027BE87 /* Home */,
 			);
@@ -368,6 +373,15 @@
 				AF4AA6A124CA66150027BE87 /* Development.xcconfig */,
 			);
 			path = Config;
+			sourceTree = "<group>";
+		};
+		AF6CAC9224EB7F7B009B795C /* Character Details */ = {
+			isa = PBXGroup;
+			children = (
+				AF6CAC9324EB7F8A009B795C /* CharacterDetailsViewModel.swift */,
+				AF6CAC9524EB800A009B795C /* CharacterDetailsViewController.swift */,
+			);
+			path = "Character Details";
 			sourceTree = "<group>";
 		};
 		AF8A22C624D3690C000DC40B /* TestViewModels */ = {
@@ -581,12 +595,14 @@
 				AF4AA68C24CA42A70027BE87 /* HomeViewModel.swift in Sources */,
 				AF6CAC8F24EB6D9B009B795C /* UICollectionView.swift in Sources */,
 				AF9A13F024D0D80400F882ED /* UITableViewCell.swift in Sources */,
+				AF6CAC9624EB800A009B795C /* CharacterDetailsViewController.swift in Sources */,
 				AF4AA69A24CA612F0027BE87 /* UIColor.swift in Sources */,
 				AF01528324CB889B00E6FF29 /* CharactersService.swift in Sources */,
 				AF01527024CB7EA200E6FF29 /* NetworkDispatch.swift in Sources */,
 				AF01528524CB8BA000E6FF29 /* Character.swift in Sources */,
 				AF6CAC9124EB6DAF009B795C /* UICollectionViewCell.swift in Sources */,
 				AF9A13FA24D0EA7D00F882ED /* UIImageView.swift in Sources */,
+				AF6CAC9424EB7F8A009B795C /* CharacterDetailsViewModel.swift in Sources */,
 				AF9A13F424D0D88D00F882ED /* HomeCharacterCell.swift in Sources */,
 				AF4AA68A24CA429E0027BE87 /* HomeViewController.swift in Sources */,
 				AF9A13ED24D0D74F00F882ED /* UIView.swift in Sources */,

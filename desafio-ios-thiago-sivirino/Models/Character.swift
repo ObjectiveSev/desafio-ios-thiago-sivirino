@@ -32,6 +32,7 @@ class CharacterResult: Mappable {
 class Character: Mappable {
     var id: Int?
     var name: String?
+    var description: String?
     var thumbnail: CharacterThumbnail?
     
     required init?(map: Map) {}
@@ -40,6 +41,7 @@ class Character: Mappable {
         self.id <- map["id"]
         self.name <- map["name"]
         self.thumbnail <- map["thumbnail"]
+        self.description <- map["description"]
     }
 }
 
@@ -52,6 +54,10 @@ class CharacterThumbnail: Mappable {
     func mapping(map: Map) {
         self.path <- map["path"]
         self.ext <- map["extension"]
+    }
+    
+    func fullPath() -> String? {
+        "\(path ?? "").\(ext ?? "")"
     }
 }
 

@@ -16,8 +16,13 @@ protocol HomeViewModelDelegate: class {
     func didSelectAction(_ action: HomeViewModelAction)
 }
 
+protocol HomeViewModelCoordinatorDelegate: class {
+    func didSelectCharacter(_ character: Character)
+}
+
 class HomeViewModel {
     weak var delegate: HomeViewModelDelegate?
+    weak var coordinatorDelegate: HomeViewModelCoordinatorDelegate?
     
     private let charactersService: ICharactersService
     private var endOfPage = false
@@ -43,13 +48,17 @@ class HomeViewModel {
     
     func itemAt(_ indexPath: IndexPath) -> (image: String?, name: String?) {
         let char = characters[indexPath.row]
-        return ("\(char.thumbnail?.path ?? "").\(char.thumbnail?.ext ?? "")", char.name)
+        return (char.thumbnail?.fullPath(), char.name)
     }
     
     func handleDisplayItemAt(_ indexPath: IndexPath) {
         if indexPath.row >= characters.count - 5 {
             getItems(reload: false)
         }
+    }
+    
+    func selectItemAt(_ indexPath: IndexPath) {
+        coordinatorDelegate?.didSelectCharacter(characters[indexPath.row])
     }
 }
 

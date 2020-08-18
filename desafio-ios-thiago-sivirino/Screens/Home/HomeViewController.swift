@@ -17,19 +17,19 @@ class HomeViewController: BaseViewController {
         return view
     }()
     
-     private lazy var collectionView: UICollectionView = {
-           let layout = UICollectionViewFlowLayout()
-           let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
-           collection.delegate = self
-           collection.dataSource = self
-           let refreshControl = UIRefreshControl()
-           refreshControl.tintColor = .primaryColor
-           refreshControl.addTarget(self, action: #selector(didRefresh), for: .valueChanged)
-           collection.refreshControl = refreshControl
-           collection.backgroundColor = .white
-           collection.registerCell(cellClass: HomeCharacterCell.self)
-           return collection
-       }()
+    private lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collection.delegate = self
+        collection.dataSource = self
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = .primaryColor
+        refreshControl.addTarget(self, action: #selector(didRefresh), for: .valueChanged)
+        collection.refreshControl = refreshControl
+        collection.backgroundColor = .white
+        collection.registerCell(cellClass: HomeCharacterCell.self)
+        return collection
+    }()
     
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
@@ -117,7 +117,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //TODO: select
+        viewModel.selectItemAt(indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

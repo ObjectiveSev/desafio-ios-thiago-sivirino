@@ -9,8 +9,6 @@
 import XCTest
 @testable import desafio_ios_thiago_sivirino
 
-
-
 class HomeViewModelTest: XCTestCase {
     class MockCharactersService: ICharactersService {
         var characters = [Character]()

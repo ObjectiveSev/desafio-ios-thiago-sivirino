@@ -40,8 +40,29 @@ public class AppCoordinator: RootViewCoordinator {
     public func start() {
         let service = CharactersService()
         let viewModel = HomeViewModel(hotelsService: service)
+        viewModel.coordinatorDelegate = self
         let home = HomeViewController(viewModel: viewModel)
         navigationController.pushViewController(home, animated: false)
     }
+}
+
+extension AppCoordinator: HomeViewModelCoordinatorDelegate {
+    func didSelectCharacter(_ character: Character) {
+        let navigation = getDefaultNavigationController()
+        let viewModel = CharacterDetailsViewModel(character: character)
+        viewModel.coordinatorDelegate = self
+        let controller = CharacterDetailsViewController(viewModel: viewModel)
+        navigation.viewControllers = [controller]
+        navigationController.present(navigation, animated: true)
+    }
+}
+
+extension AppCoordinator: CharacterDetailsViewModelCoordinatorDelegate {
+    func closeDetails() {
+        navigationController.dismiss(animated: true)
+    }
     
+    func seeComic() {
+        
+    }
 }

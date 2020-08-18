@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /// The Coordinator protocol
 public protocol Coordinator: class {
@@ -25,5 +26,11 @@ public extension Coordinator {
     /// Remove a child coordinator from the parent
     func removeChildCoordinator(_ childCoordinator: Coordinator) {
         self.childCoordinators = self.childCoordinators.filter { $0 !== childCoordinator }
+    }
+    
+    func getDefaultNavigationController() -> UINavigationController {
+        let navigation = UINavigationController(navigationBarClass: CustomNavBar.self, toolbarClass: nil)
+        navigation.view.backgroundColor = .white
+        return navigation
     }
 }
